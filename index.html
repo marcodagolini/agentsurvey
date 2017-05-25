@@ -4,7 +4,6 @@
    <head>
         <meta charset="utf-8">
         <title>LivePerson LE - CRM Integration</title>
-        <script src="https://lpcdn-a.lpsnmedia.net/webagent/client-SDK.min.js"></script>
         <script src="https://apis.google.com/js/api.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
@@ -25,7 +24,7 @@
 
 
 
-<select>
+<select name="a" form="foo">
   <option value="In Ambito">In Ambito</option>
   <option value="Non in Ambito">Non in Ambito</option>
   <option value="Non Definito">Non Definito</option>
@@ -34,7 +33,7 @@
 
 <br><br>
 
-<select>
+<select name="b" form="foo">
   <option value="Fatturazione">Fatturazione</option>
   <option value="Problemi tecnici">Problemi tecnici</option>
   <option value="Altro">Altro</option>
@@ -43,7 +42,7 @@
 
 <br><br>
 
-<select>
+<select name="c" form="foo">
   <option value="Customer base">Customer base</option>
   <option value="Mobile">Mobile</option>
   <option value="Fisso">Fisso</option>
@@ -52,14 +51,14 @@
 
 <br><br>
 
-<textarea rows="4" cols="50">
+<textarea rows="4" cols="50" name="d" form="foo">
 
 </textarea>
 
 <br><br>
 
 
- <input id="mybtn" type="submit" value="Send" name="mysub" />
+ <input id="mybtn" type="submit" value="Invia" name="mysub" />
 
 
 </form>
@@ -95,7 +94,7 @@
                     var $form = $(this);
                 
                     // Let's select and cache all the fields
-                    var $inputs = $form.find("input, select, button, textarea");
+                    var $inputs = $form.find("a, b, c, d");
                 
                     // Serialize the data in the form
                     var serializedData = $form.serialize();
