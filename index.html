@@ -106,6 +106,7 @@ testo!!!
                     request = $.ajax({
                         url: "https://script.google.com/macros/s/AKfycbwDVwoDJMpNgb-HyrTPmwLMa8Me4Rqe6bu-VMfpwqRT0UoyoZfm/exec",
                         type: "post",
+                        headers: {'Access-Control-Allow-Origin': '*'},
                         data: serializedData
                     });
                 
