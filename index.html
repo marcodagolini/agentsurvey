@@ -18,52 +18,24 @@
       
       
       
-    
       
-      
-       <form id="foo" name="foo">
-
-
-
-<select name="a">
-  <option value="a">In Ambito</option>
-  <option value="a">Non in Ambito</option>
-  <option value="a">Non Definito</option>
-
-</select>
-
-<br><br>
-
-<select name="b" >
-  <option value="b">Fatturazione</option>
-  <option value="b">Problemi tecnici</option>
-  <option value="b">Altro</option>
-
-</select>
-
-<br><br>
-
-<select name="c" >
-  <option value="c">Customer base</option>
-  <option value="c">Mobile</option>
-  <option value="c">Fisso</option>
-
-</select>
-
-<br><br>
-
-<textarea rows="4" cols="50" name="d" >
-scrivi ciao!!!!!
-</textarea>
-
-<br><br>
-
-
- <input id="mybtn" type="submit" value="Invia" name="mysub" />
-
-
+       <form id="foo" name="foo" > <!-- style="display:block" -->
+                <label for="a">Sender</label>
+                <input id="a" name="a" type="text" value="" />
+                <label for="b">Message</label>
+                <input id="b" name="b" type="text" value="" />
+                <label for="c">Name</label>
+                <input id="c" name="c" type="text" value="" />
+                <label for="d">EMail</label>
+                <input id="d" name="d" type="text" value="" />
+               
+                <input id="mybtn" type="submit" value="Send" name="mysub" />
 </form>
+      
     
+      
+      
+      
   
         
             <script type="text/javascript">
