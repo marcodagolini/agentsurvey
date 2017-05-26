@@ -11,6 +11,7 @@
         <script src="https://cdn.auth0.com/js/lock/10.2.1/lock.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         
     
     </head>
     <body>
@@ -52,7 +53,7 @@
 <br><br>
 
 <textarea rows="4" cols="50" name="d" form="foo">
-scrivi!!!!!
+scrivi ciao!!!!!
 </textarea>
 
 <br><br>
@@ -67,7 +68,6 @@ scrivi!!!!!
         
             <script type="text/javascript">
               
-     
               
             $(document).ready(function() {
               
@@ -104,6 +104,7 @@ scrivi!!!!!
                 
                     // Fire off the request to /form.php
                     request = $.ajax({
+                        headers: { "Access-Control-Allow-Origin":"*"},
                         url: "https://script.google.com/macros/s/AKfycbyRgc7YsORM0Wo24Kjto7z_SY7j9cCWUCv4NADAeAAu1Q2p6Yw1/exec",
                         type: "post",
                         data: serializedData
