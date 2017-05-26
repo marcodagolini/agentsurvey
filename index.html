@@ -1,9 +1,22 @@
+
+<!--
+Created By: Marco Dagolini
+Version: 1.1
+Date: 8/7/16
+Email: mdagolini@liveperson.com
+-->
 <!DOCTYPE html>
 <html lang="en">
   
-   <head>
+  
+
+
+  
+    
+    <head>
         <meta charset="utf-8">
-        <title>TIM Agent Survey</title>
+        <title>LivePerson LE - CRM Integration</title>
+        <script src="https://lpcdn-a.lpsnmedia.net/webagent/client-SDK.min.js"></script>
         <script src="https://apis.google.com/js/api.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
@@ -11,44 +24,65 @@
         <script src="https://cdn.auth0.com/js/lock/10.2.1/lock.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         
     
     </head>
     <body>
       
       
       
-      
-       <form id="foo" name="foo" > <!-- style="display:block" -->
-                <label for="a">Sender</label>
-                <input id="a" name="a" type="text" value="" />
-                <label for="b">Message</label>
-                <input id="b" name="b" type="text" value="" />
-                <label for="c">Name</label>
-                <input id="c" name="c" type="text" value="" />
-                <label for="d">EMail</label>
-                <input id="d" name="d" type="text" value="" />
-               
-                <input id="mybtn" type="submit" value="Send" name="mysub" />
-</form>
-      
     
       
       
-      
+        <form id="foo" name="foo" > <!-- style="display:block" -->
+                <label for="Sender">Sender</label>
+                <input id="Sender" name="s" type="text" value="" />
+                <br>
+                <br>
+                <select name="a">
+                    <option value="In Ambito">In Ambito</option>
+                    <option value="Non In Ambito">Non In Ambito</option>
+                    <option value="Non Definito">Non Definito</option>
+                </select> 
+                <br>
+                <br>
+                <select name="b">
+                    <option value="Fatturazione">Fatturazione</option>
+                    <option value="Problemi Tecnici">Problemi Tecnici</option>
+                    <option value="Per Concludere Ordine">Per Concludere Ordine</option>
+                </select> 
+                <br>
+                <br>
+                <textarea name="d" rows="10" cols="30">Lascia un commento</textarea> 
+                <br>
+                <br>
+                <label for="Message">Message</label>
+                <input id="Message" name="Message" type="text" value="" />
+                <label for="Name">Name</label>
+                <input id="Name" name="Name" type="text" value="" />
+                <label for="EMail">EMail</label>
+                <input id="EMail" name="EMail" type="text" value="" />
+                <label for="Phone">Phone</label>
+                <input id="Phone" name="Phone" type="text" value="" />
+                <input id="mybtn" type="submit" value="Send" name="mysub" />
+            </form>
+    
   
         
             <script type="text/javascript">
               
+     
               
             $(document).ready(function() {
               
-   
+              var SDK=lpTag.agentSDK;
+              SDK.init();
+              
+              
+              
            
               
                var Time = setTimeout(function(){  //gestione CRM
-               alert("ciao");
-                 console.log("ahead!");
+             
                 // Variable to hold request
                 var request;
                 
@@ -76,7 +110,6 @@
                 
                     // Fire off the request to /form.php
                     request = $.ajax({
-                 
                         url: "https://script.google.com/macros/s/AKfycbwDVwoDJMpNgb-HyrTPmwLMa8Me4Rqe6bu-VMfpwqRT0UoyoZfm/exec",
                         type: "post",
                         data: serializedData
@@ -88,7 +121,6 @@
                         console.log("Hooray, it worked!");
                     });
                 
-                  
                     // Callback handler that will be called on failure
                     request.fail(function (jqXHR, textStatus, errorThrown){
                         // Log the error to the console
@@ -107,9 +139,153 @@
                 
                     // Prevent default posting of form
                     event.preventDefault();
-                });    
+                });
+                // var SDK=lpTag.agentSDK;
+                // SDK.init();
+                // var data={text: "This test worked!"};
+                // SDK.command('Write ChatLine',data);
+                
+              
+              
+              
+     
+               
+                
+                var onSuccess1 = function(data) {
+                // Do something with the returning data
+                var elem=document.getElementById("Name");
+                elem.value=data;
+                };
+                
+                var onError1 = function(data) {
+                // Do something with the returning data
+                var elem=document.getElementById("Name");
+                elem.value="null";
+                };
+                
+                
+                var onSuccess2 = function(data) {
+                // Do something with the returning data
+                document.getElementById("EMail").value=data;
+                };
+                
+                
+                var onError2 = function(data) {
+                // Do something with the returning data
+                var elem=document.getElementById("EMail");
+                elem.value="null";
+                };
+                
+                var onSuccess3 = function(data) {
+                // Do something with the returning data
+                document.getElementById("Phone").value=data;
+              
+                };
+            
+                var onError3 = function(data) {
+                // Do something with the returning data
+                var elem=document.getElementById("Phone");
+                elem.value="null";
+                };
+                
+                
+                
+                
+                
+                
+               
+               
+             
+                SDK.get('surveyQuestions.preChat.name.value', onSuccess1, onError1);
+                SDK.get('surveyQuestions.preChat.email.value', onSuccess2, onError2);
+                SDK.get('surveyQuestions.preChat.phone.value', onSuccess3, onError3);
+               
+               
+                
+                // document.foo.mysub.click();
+              
+              
+             
+              
+                
+                
+                // else{
+                       // window.location.reload();
+                    // }
+                 
+                  var Time = setTimeout(function(){  
+                
+                  if (document.getElementById("Name").value) 
+                    {
+                      document.getElementById("mybtn").click();
+                      document.getElementById("Sender").value="";
+                      document.getElementById("Message").value="";
+                      document.getElementById("Name").value="";
+                      document.getElementById("EMail").value="";
+                      document.getElementById("Phone").value="";
+                    }
+              
+                   }, 1000);
+                 
+                 
+                 
+                }, 5000);
+              
+                var Time = setTimeout(function(){
+                  
+                     var isstarted = 0;
+               
+                     var updateCallback = function(data) {
+                       
+                       if (isstarted == 0) {
+                       
+                           document.getElementById("Message").value=data.newValue.lines[0].text;
+                           document.getElementById("Sender").value=data.newValue.lines[0].source;
+                           document.getElementById("mybtn").click();
+                         
+                          setTimeout(function(){
+                          
+                              document.getElementById("Message").value=data.newValue.lines[1].text;
+                              document.getElementById("Sender").value=data.newValue.lines[1].source;
+                              document.getElementById("mybtn").click();
+                           }, 1000);
+                             
+                           isstarted = 1;
+                         
+                       }
+                       
+                       else {
+                       
+                          if ((data.newValue.lines[0].text.indexOf('<')> -1) && (data.newValue.lines[0].text.indexOf('>')> -1)) {
+                        
+                             var inizio = data.newValue.lines[0].text.indexOf('>')+1;
+                             var fine = data.newValue.lines[0].text.lastIndexOf('<');
+                        
+                        
+                             document.getElementById("Message").value=data.newValue.lines[0].text.substring(inizio,fine);
+                        
+                          }
+                       
+                          else {
+                         
+                             document.getElementById("Message").value=data.newValue.lines[0].text;
+                         
+                          }
+                       
+                          document.getElementById("Sender").value=data.newValue.lines[0].source;
+                          document.getElementById("mybtn").click();
+                      }
+                       
+                    };
+                  
+                    var notifyWhenDone = function(data) {
+                        
+                    };
+       
+                  
+                    SDK.bind('chatTranscript', updateCallback, notifyWhenDone);
                     
-               }, 5000);
+               }, 9000);
               
            });
   
@@ -121,9 +297,5 @@
       
    
       
-
-
-
-  
-</body>
+    </body>
 </html>
