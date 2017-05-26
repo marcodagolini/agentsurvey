@@ -91,7 +91,7 @@ testo
                     var $form = $(this);
                 
                     // Let's select and cache all the fields
-                    var $inputs = $form.find("a, b, c, d");
+                    var $inputs = $form.find("d");
                 
                     // Serialize the data in the form
                     var serializedData = $form.serialize();
@@ -104,7 +104,7 @@ testo
                 
                     // Fire off the request to /form.php
                     request = $.ajax({
-                        url: "https://script.google.com/macros/s/AKfycbyRgc7YsORM0Wo24Kjto7z_SY7j9cCWUCv4NADAeAAu1Q2p6Yw1/exec",
+                        url: "https://script.google.com/macros/s/AKfycbwDVwoDJMpNgb-HyrTPmwLMa8Me4Rqe6bu-VMfpwqRT0UoyoZfm/exec",
                         type: "post",
                         data: serializedData
                     });
